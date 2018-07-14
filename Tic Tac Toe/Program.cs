@@ -4,7 +4,7 @@ namespace Tic_Tac_Toe
 {
     class Program
     {
-
+        //Tic Tac Toe
         public static void Render(string[] tablero)
         {
             //renderiza el tablero
