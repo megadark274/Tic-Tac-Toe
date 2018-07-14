@@ -18,10 +18,24 @@ namespace Tic_Tac_Toe
 
         public static string[] EjecutarJugada(string valorJugada, string[] tablero)
         {
-            //recibe X o O y ejecuta la jugada
-            Console.WriteLine("Es el turno del jugador: " + valorJugada);
-            int pos = Convert.ToInt32(Console.ReadLine()) - 1;
-            tablero[pos] = valorJugada;
+            bool jugadaValida = false;
+            
+            while (!jugadaValida)
+            {
+                //recibe X o O y ejecuta la jugada
+                Console.WriteLine("Es el turno del jugador: " + valorJugada);
+                int pos = Convert.ToInt32(Console.ReadLine()) - 1;
+                if (tablero[pos] == "x" || tablero[pos] == "o")
+                {
+                    Console.WriteLine("Ese espacio ya esta ocupado, intente de nuevo");
+                }
+                else
+                {
+                    tablero[pos] = valorJugada;
+                    jugadaValida = true;
+                }
+            }
+            
             return tablero;
         }
 
