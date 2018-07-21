@@ -27,18 +27,11 @@ namespace Tic_Tac_Toe
                 int pos;
                 string posChar;
                 //recibe X o O y ejecuta la jugada
-
+                
                 posChar = Console.ReadLine();
                 //int pos = Convert.ToInt32(Console.ReadLine()) - 1;
                 //verifica que el valor introducido es un numero del 1 al 9
-                if (!(System.Text.RegularExpressions.Regex.IsMatch(posChar, @"^[1-9]+$")))
-                {
-                    Console.WriteLine("El valor introducido no es un numero, intente de nuevo.");
-                    //TODO: provar esa vaina vacana
-                    //EjecutarJugada(valorJugada, tablero);
-                    tablero = EjecutarJugada(valorJugada, tablero);
-                }
-                else
+                if ((System.Text.RegularExpressions.Regex.IsMatch(posChar, @"^[1-9]+$")))
                 {
                     pos = Convert.ToInt32(posChar) - 1;
                     if (tablero[pos] == "x" || tablero[pos] == "o")
@@ -51,6 +44,10 @@ namespace Tic_Tac_Toe
                         jugadaValida = true;
                         Render(tablero);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("El valor introducido no es un numero, intente de nuevo.");
                 }
 
             }
