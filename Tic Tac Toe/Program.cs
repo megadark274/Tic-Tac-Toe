@@ -19,23 +19,42 @@ namespace Tic_Tac_Toe
         public static string[] EjecutarJugada(string valorJugada, string[] tablero)
         {
             bool jugadaValida = false;
-            
+
+            Console.WriteLine("Es el turno del jugador: " + valorJugada);
+
             while (!jugadaValida)
             {
+                int pos;
+                string posChar;
                 //recibe X o O y ejecuta la jugada
-                Console.WriteLine("Es el turno del jugador: " + valorJugada);
-                int pos = Convert.ToInt32(Console.ReadLine()) - 1;
-                if (tablero[pos] == "x" || tablero[pos] == "o")
+
+                posChar = Console.ReadLine();
+                //int pos = Convert.ToInt32(Console.ReadLine()) - 1;
+                //verifica que el valor introducido es un numero del 1 al 9
+                if (!(System.Text.RegularExpressions.Regex.IsMatch(posChar, @"^[1-9]+$")))
                 {
-                    Console.WriteLine("Ese espacio ya esta ocupado, intente de nuevo");
+                    Console.WriteLine("El valor introducido no es un numero, intente de nuevo.");
+                    //TODO: provar esa vaina vacana
+                    //EjecutarJugada(valorJugada, tablero);
+                    tablero = EjecutarJugada(valorJugada, tablero);
                 }
                 else
                 {
-                    tablero[pos] = valorJugada;
-                    jugadaValida = true;
+                    pos = Convert.ToInt32(posChar) - 1;
+                    if (tablero[pos] == "x" || tablero[pos] == "o")
+                    {
+                        Console.WriteLine("Ese espacio ya esta ocupado, intente de nuevo");
+                    }
+                    else
+                    {
+                        tablero[pos] = valorJugada;
+                        jugadaValida = true;
+                        Render(tablero);
+                    }
                 }
+
             }
-            
+
             return tablero;
         }
 
